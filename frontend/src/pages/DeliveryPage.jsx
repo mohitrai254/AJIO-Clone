@@ -40,6 +40,11 @@ const DEFAULT_ADDRESS = {
   makeDefault: true,
 };
 
+function getExpectedDeliveryDate() {
+  const today = new Date();
+  today.setDate(today.getDate() + 7);
+  return today.toLocaleDateString("en-IN", { day: "2-digit", month: "short" });
+}
 export default function DeliveryPage() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
@@ -261,7 +266,9 @@ export default function DeliveryPage() {
                       className="w-16 h-16 object-cover rounded"
                     />
                     <div>
-                      <div className="font-semibold">18 Sep</div>
+                      <div className="font-semibold">
+                        {getExpectedDeliveryDate()}
+                      </div>
                       <div className="text-sm text-gray-600">{it.brand}</div>
                       <div className="text-sm text-gray-600">{it.name}</div>
                     </div>
